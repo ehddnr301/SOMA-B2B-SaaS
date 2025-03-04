@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: client_stream_active_on_subscription
+    description: "Activity data triggered when a customer is active on a subscription"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: entity_id
+        description: "The entity id of the customer"
+        tests:
+          - not_null
+      - name: activity_ts
+        description: "The timestamp when the activity occurred"
+        tests:
+          - not_null
+      - name: activity
+        description: "The name of the activity"
+        tests:
+          - not_null
+      - name: revenue_impact
+        description: "The revenue impact of the activity, if applicable"
+        tests:
+          - not_null
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'."
+        tests:
+          - not_null
+  - name: client_stream_ended_subscription
+    description: "Activity data triggered when a customer ends a subscription"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: entity_id
+        description: "The entity id of the customer"
+        tests:
+          - not_null
+      - name: activity_ts
+        description: "The timestamp when the activity occurred"
+        tests:
+          - not_null
+      - name: activity
+        description: "The name of the activity"
+        tests:
+          - not_null
+      - name: revenue_impact
+        description: "The revenue impact of the activity, if applicable"
+        tests:
+          - not_null
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including customer segments such as 'churn_risk_users', 'churned_users', 'canceled_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'."
+        tests:
+          - not_null
+  - name: client_stream_started_subscription
+    description: "Activity data triggered when a customer starts a subscription"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: entity_id
+        description: "The entity id of the customer"
+        tests:
+          - not_null
+      - name: activity_ts
+        description: "The timestamp when the activity occurred"
+        tests:
+          - not_null
+      - name: activity
+        description: "The name of the activity"
+        tests:
+          - not_null
+      - name: revenue_impact
+        description: "The revenue impact of the activity, if applicable"
+        tests:
+          - not_null
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'free_users', 'paid_users', 'new_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'."
+        tests:
+          - not_null
+    

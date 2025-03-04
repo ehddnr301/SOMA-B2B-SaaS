@@ -25,7 +25,19 @@
 -}}
 
 -- Returns a list of relations that match schema.prefix%
-{%- set all_tables = dbt_utils.get_relations_by_pattern('main', 'client_stream%') -%}
+{% set all_tables = [
+    ref('client_stream_decreased_contract'),
+    ref('client_stream_incurred_overage'),
+    ref('client_stream_ended_subscription'),
+    ref('client_stream_expanded_contract'),
+    ref('client_stream_active_on_subscription'),
+    ref('client_stream_committed_to_churn'),
+    ref('client_stream_resurrected_contract'),
+    ref('client_stream_ordered_service'),
+    ref('client_stream_renewed_contract'),
+    ref('client_stream_started_subscription')
+] %}
+
 {% for table in all_tables %}
 select
     id,

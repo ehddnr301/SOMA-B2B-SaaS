@@ -19,7 +19,7 @@ with cte_sequence as (
 , cte_date_spine as (
     select
         id,
-        timezone('utc',now()) - to_seconds(floor(random()*id*1000)::int) as ts
+        now() - to_seconds(floor(random()*id*1000)::int) as ts
     from
         cte_sequence
 ),
@@ -44,13 +44,20 @@ cte_feature_json_dict_values as (
         cross join cte_feature_json_dict_keys
 ),
 cte_feature_json_values as (
-    select
-        id,
-        json_feature_key,
-        feature_dict->>json_feature_key->>floor(random() * (json_feature_array_length))::int as json_feature_value
-    from
-        cte_feature_json_dict_values
-        cross join cte_sequence
+SELECT
+    id,
+    json_feature_key,
+    feature_dict->>json_feature_key->>(
+        MOD(
+            CAST(
+                '0x' || LEFT(MD5(id || json_feature_key), 8) AS UINT64
+            ),
+            json_feature_array_length
+        )
+    )::int AS json_feature_value
+FROM
+    cte_feature_json_dict_values
+    CROSS JOIN cte_sequence
 ),
 cte_feature_json as (
     select
