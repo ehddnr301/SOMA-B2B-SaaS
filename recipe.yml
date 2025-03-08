@@ -9,7 +9,7 @@ source:
       - "/home/${USER}/SOMA-B2B-SaaS/target/run_results.json" # optional for recording dbt test results after running dbt test
 
     # Options
-    target_platform: "duckdb" # e.g. bigquery/postgres/etc.
+    target_platform: "clickhouse" # e.g. bigquery/postgres/etc.
 
 sink:
   # DataHub GMS API 서버 정보

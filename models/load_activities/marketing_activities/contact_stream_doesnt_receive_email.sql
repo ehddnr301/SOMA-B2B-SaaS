@@ -6,6 +6,15 @@
 generate_fake_data (
     activity_name = 'doesnt_receive_email',
     has_revenue_impact = false,
-    feature_json_dict = '{"campaign": ["cmp1", "cmp2", "cmp3", "cmp4"]}'
+    feature_json_dict = '{"campaign": [
+        "feb_event",
+        "mar_event",
+        "apr_event",
+        "may_event",
+        "jun_event",
+        "jul_event",
+        "aug_event"
+    ]}'
   )
 -}}
+  

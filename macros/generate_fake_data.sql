@@ -6,78 +6,67 @@
   )
 -%}
 
-with cte_sequence as (
-    select unnest(generate_series(1,1000)) as id
-)
-, cte_entity as (
-    select
-        id,
-        case when id%1000 = 0 then id%1000+1 else id%1000 end as entity_id
-    from
-        cte_sequence
-)
-, cte_date_spine as (
-    select
-        id,
-        now() - to_seconds(floor(random()*id*1000)::int) as ts
-    from
-        cte_sequence
+WITH 
+cte_sequence AS (
+    SELECT arrayJoin(range(1, 1001)) AS id
 ),
-cte_feature_json_dict as (
-    select
-        '{{feature_json_dict}}' as feature_dict
+cte_entity AS (
+    SELECT 
+        id, 
+        if(id % 1000 = 0, 1, id % 1000) AS entity_id
+    FROM cte_sequence
 ),
-cte_feature_json_dict_keys as (
-    select
-        unnest(json_keys(feature_dict)) as json_feature_key
-    from
-        cte_feature_json_dict
+cte_date_spine AS (
+    SELECT 
+        id, 
+        now() - INTERVAL toUInt32(rand() % (id * 1000)) SECOND AS ts
+    FROM cte_sequence
 ),
-cte_feature_json_dict_values as (
-    select
+cte_feature_json_dict AS (
+    SELECT JSONExtract('{{ feature_json_dict }}', 'Map(String, Array(String))') AS feature_dict
+),
+cte_feature_json_dict_keys AS (
+    SELECT arrayJoin(mapKeys(feature_dict)) AS json_feature_key
+    FROM cte_feature_json_dict
+),
+cte_feature_json_dict_values AS (
+    SELECT 
         feature_dict,
         json_feature_key,
-        json_extract(feature_dict, json_feature_key) as json_feature_array,
-        json_array_length(json_feature_array) as json_feature_array_length
-    from
-        cte_feature_json_dict
-        cross join cte_feature_json_dict_keys
+        feature_dict[json_feature_key] AS json_feature_array,
+        length(feature_dict[json_feature_key]) AS json_feature_array_length
+    FROM cte_feature_json_dict
+    CROSS JOIN cte_feature_json_dict_keys
 ),
-cte_feature_json_values as (
-SELECT
-    id,
-    json_feature_key,
-    feature_dict->>json_feature_key->>(
-        MOD(
-            CAST(
-                '0x' || LEFT(MD5(id || json_feature_key), 8) AS UINT64
-            ),
-            json_feature_array_length
-        )
-    )::int AS json_feature_value
-FROM
-    cte_feature_json_dict_values
+cte_feature_json_values AS (
+    SELECT 
+        id, 
+        json_feature_key, 
+        feature_dict[json_feature_key][
+            reinterpretAsUInt64(reverse(unhex(left(MD5(concat(toString(id), json_feature_key)), 16)))) 
+            % json_feature_array_length + 1
+        ] AS json_feature_value
+    FROM cte_feature_json_dict_values
     CROSS JOIN cte_sequence
 ),
-cte_feature_json as (
-    select
+cte_feature_json AS (
+    SELECT 
         id,
-        '{' || string_agg('"' || json_feature_key || '":"' || json_feature_value || '"', ',') || '}' as feature_json
-    from
-        cte_feature_json_values
-    group by 1
+        '{' || arrayStringConcat(
+            arrayMap((k, v) -> concat('"', k, '":"', v, '"'), 
+            groupArray(json_feature_key), groupArray(json_feature_value)), 
+        ',') || '}' AS feature_json
+    FROM cte_feature_json_values
+    GROUP BY id
 )
-select 
-    cc.id,
-    cc.entity_id,
-    ds.ts as activity_ts,
-    '{{activity_name}}' as activity,
-    {% if has_revenue_impact == true %} round(random()*10000::float, 2) {% else %} 0 {% endif %} as revenue_impact,
-    feature_json
-from
-    cte_entity cc
-    join cte_date_spine ds
-        on cc.id = ds.id
-    join cte_feature_json jf
-        on cc.id = jf.id
+    SELECT 
+        cc.id AS id,
+        cc.entity_id AS entity_id,
+        ds.ts AS activity_ts,
+        '{{ activity_name }}' AS activity,
+        {% if has_revenue_impact == true %} round(rand() * 10000, 2) {% else %} 0 {% endif %} AS revenue_impact,
+        feature_json AS feature_json
+    FROM cte_entity cc
+    JOIN cte_date_spine ds ON cc.id = ds.id
+    JOIN cte_feature_json jf ON cc.id = jf.id
 {% endmacro %}

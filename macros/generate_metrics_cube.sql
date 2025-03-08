@@ -170,7 +170,7 @@ cte_final as (
           {% for _ in metric_slices -%}
             when combination_{{loop.index}}_bit = 0 then concat(
               {%- for dimension in metric_slices[loop.index0] -%}
-                ifnull(json_extract_string(slice_object, '$.dim_name'), 'null') {%- if not loop.last -%}, ' x ', {% endif %}
+                ifnull(JSONExtractString(slice_object, '$.dim_name'), 'null') {%- if not loop.last -%}, ' x ', {% endif %}
               {%- endfor -%}
             )
           {% endfor -%}
@@ -183,7 +183,7 @@ cte_final as (
           {% for _ in metric_slices -%}
             when combination_{{loop.index}}_bit = 0 then concat(
               {%- for dimension in metric_slices[loop.index0] -%}
-                ifnull(json_extract_string(slice_object, '$.dim_value'), 'null') {%- if not loop.last -%}, ' x ', {% endif %}
+                ifnull(JSONExtractString(slice_object, '$.dim_value'), 'null') {%- if not loop.last -%}, ' x ', {% endif %}
               {%- endfor -%}
             )
           {% endfor -%}

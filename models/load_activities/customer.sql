@@ -3,15 +3,15 @@
 -}}
 
 with cte_sequence as (
-    select unnest(generate_series(1,5000)) as id
+    select arrayJoin(range(1, 5001)) as id
 ),
 cte_base as (
     select
         id,
-        now() - to_seconds(floor(random()*id*10000)::int) as create_date,
-        'channel' || floor(50*random())::int::text as first_touch_channel,
-        'channel' || floor(50*random())::int::text as last_touch_channel,
-        'segment' || floor(30*random())::int::text as segment
+        now() - toIntervalSecond(floor(rand() * id * 10000)) as create_date,
+        'channel' || floor(50*rand())::int::text as first_touch_channel,
+        'channel' || floor(50*rand())::int::text as last_touch_channel,
+        'segment' || floor(30*rand())::int::text as segment
     from
         cte_sequence
 )

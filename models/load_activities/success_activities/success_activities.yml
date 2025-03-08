@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: client_stream_activated_on_product
+    description: "Activity data triggered when a client activates on a product"
+    columns: &standard_success_columns
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the client"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity, including customer segments such as 'active_users', 
+          'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 
+          'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 
+          'monthly_plan', 'annual_plan', 'lifetime_plan'. and csm names like 'chris', 'john', 'jane', 'jim', 'jill', 'james' 
+          and mrr_tier types like 'tier1', 'tier2', 'tier3', 'tier4', 'tier5'
+
+  - name: client_stream_churned_on_product
+    description: "Activity data triggered when a client churns on a product"
+    columns: *standard_success_columns
+
+  - name: client_stream_created_cancellation_request
+    description: "Activity data triggered when a client creates a cancellation request"
+    columns: *standard_success_columns
+
+  - name: client_stream_created_support_ticket
+    description: "Activity data triggered when a client creates a support ticket"
+    columns: *standard_success_columns
+
+  - name: client_stream_onboarded
+    description: "Activity data triggered when a client is onboarded"
+    columns: *standard_success_columns
+
+  - name: client_stream_onboarding_call
+    description: "Activity data triggered when a client is onboarded"
+    columns: *standard_success_columns
+
+  - name: client_stream_responded_to_ces_survey
+    description: "Activity data triggered when a client responds to a CES survey"
+    columns: *standard_success_columns
+
+  - name: client_stream_responded_to_csat_survey
+    description: "Activity data triggered when a client responds to a CSAT survey"
+    columns: *standard_success_columns
+
+  - name: client_stream_responded_to_nps_survey
+    description: "Activity data triggered when a client responds to a NPS survey"
+    columns: *standard_success_columns
+
+  - name: client_stream_withdrew_cancellation_request
+    description: "Activity data triggered when a client withdraws a cancellation request"
+    columns: *standard_success_columns

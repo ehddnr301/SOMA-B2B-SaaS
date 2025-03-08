@@ -1,0 +1,234 @@
+version: 2
+
+models:
+  - name: company_stream_hired_sdr
+    description: "Activity data triggered when a company hires an SDR"
+    columns: &standard_sdr_columns_t
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including tenure of the SDR such as '0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7'
+  
+  - name: contact_stream_attended_event
+    description: "Activity data triggered when a contact attends an event"
+    columns: &standard_sdr_columns_c
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
+
+  - name: contact_stream_completed_session
+    description: "Activity data triggered when a contact completes a session"
+    columns: &standard_sdr_columns_ccp
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including channel such as 'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'
+          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
+          including page such as 'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'
+
+  - name: contact_stream_converted_suspect_to_prospect
+    description: "Activity data triggered when a contact is converted from a suspect to a prospect"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+
+  - name: contact_stream_converted_suspect_to_prospect
+    description: "Activity data triggered when a contact is qualified as a prospect by an SDR"
+    columns: &standard_sdr_columns_cco
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including channel such as 'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'
+          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
+          including org such as 'Sales', 'Marketing', 'Engineering', 'Management'
+
+  - name: contact_stream_generated_suspect
+    description: "Activity data triggered when a contact is generated as a suspect"
+    columns: &standard_sdr_columns_co
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including channel such as 'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'
+          including org such as 'Sales', 'Marketing', 'Engineering', 'Management'
+
+  - name: contact_stream_started_session
+    description: "Activity data triggered when a contact starts a session"
+    columns: &standard_sdr_columns_cp
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: |
+          JSON string containing feature data related to the activity,
+          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
+          including page such as 'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'
+
+  - name: company_stream_offboarded_sdr
+    description: "Activity data triggered when a company offboards an SDR"
+    columns: *standard_sdr_columns_t
+
+  - name: company_stream_onboarded_sdr
+    description: "Activity data triggered when a company onboarded an SDR"
+    columns: *standard_sdr_columns_t
+
+  - name: company_stream_sdr_accrued_quota_contribution
+    description: "Activity data triggered when a company accrues a quota contribution from an SDR"
+    columns: *standard_sdr_columns_t
+
+  - name: company_stream_set_sdr_quota
+    description: "Activity data triggered when a company sets an SDR quota"
+    columns: *standard_sdr_columns_t
+
+  - name: contact_stream_attended_webinar
+    description: "Activity data triggered when a contact attends a webinar"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_clicked_ad
+    description: "Activity data triggered when a contact clicks an ad"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_received_email
+    description: "Activity data triggered when a contact receives an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_doesnt_receive_email
+    description: "Activity data triggered when a contact doesn't receive an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_engaged_with_email
+    description: "Activity data triggered when a contact engages with an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_generated_suspect
+    description: "Activity data triggered when a contact is generated as a suspect"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_interacted_with_form
+    description: "Activity data triggered when a contact interacts with a form"
+    columns: *standard_sdr_columns_ccp
+
+  - name: contact_stream_opened_email
+    description: "Activity data triggered when a contact opens an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_received_email
+    description: "Activity data triggered when a contact receives an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_sdr_accepted_prospect
+    description: "Activity data triggered when a contact is accepted as a prospect by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_called_prospect
+    description: "Activity data triggered when a contact is called by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_cold_outbounded_prospect
+    description: "Activity data triggered when a contact is cold outbounded by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_created_business_opportunity
+    description: "Activity data triggered when a contact is created as a business opportunity by an SDR"
+    columns: *standard_sdr_columns_cco
+  
+  - name: contact_stream_sdr_disqualified_prospect
+    description: "Activity data triggered when a contact is disqualified as a prospect by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_emailed_prospect
+    description: "Activity data triggered when a contact is emailed by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_qualified_prospect
+    description: "Activity data triggered when a contact is qualified as a prospect by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_scheduled_intake_for_business_opportunity
+    description: "Activity data triggered when a contact is scheduled for an intake for a business opportunity by an SDR"
+    columns: *standard_sdr_columns_cco
+
+  - name: contact_stream_sdr_sent_email
+    description: "Activity data triggered when a contact is sent an email by an SDR"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_submitted_form
+    description: "Activity data triggered when a contact submits a form"
+    columns: *standard_sdr_columns_ccp
+
+  - name: contact_stream_unsubscribed_email
+    description: "Activity data triggered when a contact unsubscribes from an email"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_viewed_ad
+    description: "Activity data triggered when a contact views an ad"
+    columns: *standard_sdr_columns_c
+
+  - name: contact_stream_viewed_form
+    description: "Activity data triggered when a contact views a form"
+    columns: *standard_sdr_columns_ccp
+
+  - name: contact_stream_visited_page
+    description: "Activity data triggered when a contact visits a page"
+    columns: *standard_sdr_columns_ccp

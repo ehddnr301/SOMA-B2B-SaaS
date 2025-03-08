@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: company_stream_ae_accrued_quota_contribution
+    description: "Activity data triggered when an AE accrues a quota contribution"
+    columns: &standard_sales_columns_t
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the company"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including tenure of the AE such as '0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7'"
+
+  - name: company_stream_offboarded_ae
+    description: "Activity data triggered when a company offboards an AE"
+    columns: *standard_sales_columns_t
+
+  - name: company_stream_onboarded_ae
+    description: "Activity data triggered when a company onboarded an AE"
+    columns: *standard_sales_columns_t
+
+  - name: company_stream_ramped_ae
+    description: "Activity data triggered when a company ramped an AE"
+    columns: *standard_sales_columns_t
+
+  - name: company_stream_set_ae_quota
+    description: "Activity data triggered when a company set an AE quota"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_called_contact
+    description: "Activity data triggered when a contact is called"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_completed_demo
+    description: "Activity data triggered when a demo is completed"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_created_expansion_opportunity
+    description: "Activity data triggered when a new expansion opportunity is created"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_created_new_opportunity
+    description: "Activity data triggered when a new opportunity is created"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_created_renewal_opportunity
+    description: "Activity data triggered when a renewal opportunity is created"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_disqualified_new_opportunity
+    description: "Activity data triggered when a new opportunity is disqualified"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_emailed_contact
+    description: "Activity data triggered when a contact is emailed"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_lost_opportunity
+    description: "Activity data triggered when an opportunity is lost"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_met_contact
+    description: "Activity data triggered when a contact is met"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_qualified_new_opportunity
+    description: "Activity data triggered when a new opportunity is qualified"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_scheduled_demo
+    description: "Activity data triggered when a demo is scheduled"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_updated_close_date
+    description: "Activity data triggered when a close date is updated"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_updated_deal_amount
+    description: "Activity data triggered when a deal amount is updated"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_updated_win_probability
+    description: "Activity data triggered when a win probability is updated"
+    columns: *standard_sales_columns_t
+
+  - name: deal_stream_won_opportunity
+    description: "Activity data triggered when an opportunity is won"
+    columns: *standard_sales_columns_t

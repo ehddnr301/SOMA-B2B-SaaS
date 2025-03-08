@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: client_stream_committed_to_churn
+    description: "Activity data triggered when a customer is committed to churn"
+    columns: &standard_client_columns_sp
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+      - name: entity_id
+        description: "The entity id of the customer"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'."
+
+  - name: client_stream_decreased_contract
+    description: "Activity data triggered when a customer decreases their contract"
+    columns: *standard_client_columns_sp
+    
+  - name: client_stream_expanded_contract
+    description: "Activity data triggered when a customer expands their contract"
+    columns: *standard_client_columns_sp
+
+  - name: client_stream_incurred_overage
+    description: "Activity data triggered when a customer incurs overage"
+    columns: &standard_client_columns_ssp
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+      - name: entity_id
+        description: "The entity id of the customer"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users', plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan', and services like 'service1', 'service2', 'service3'."
+
+  - name: client_stream_ordered_service
+    description: "Activity data triggered when a customer orders a service"
+    columns: *standard_client_columns_ssp
+
+  - name: client_stream_renewed_contract
+    description: "Activity data triggered when a customer renews their contract"
+    columns: *standard_client_columns_sp
+
+  - name: client_stream_resurrected_contract
+    description: "Activity data triggered when a customer resurrects their contract"
+    columns: *standard_client_columns_sp
+
+  - name: contact_stream_signed_contract
+    description: "Activity data triggered when a customer signs a contract"
+    columns: &standard_contact_columns_sspcm
+      - name: id
+        description: "The primary key for this table"
+      - name: entity_id
+        description: "The entity id of the customer"
+      - name: activity_ts
+        description: "The timestamp of the activity"
+      - name: activity
+        description: "The name of the activity"
+      - name: revenue_impact
+        description: "The revenue impact of the activity"
+      - name: feature_json
+        description: "JSON string containing feature data related to the activity, including subscription types like 'mrr' (Monthly Recurring Revenue) and 'arr' (Annual Recurring Revenue), plan types such as 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', and 'lifetime_plan', as well as customer success managers (CSMs) like 'chris', 'john', 'jane', 'jim', 'jill', and 'james'. Additionally, it contains MRR tiers ranging from 'tier1' to 'tier5'."
+
+  - name: contact_stream_trial_converted_to_customer
+    description: "Activity data triggered when a customer converts their trial to a customer"
+    columns: *standard_contact_columns_sspcm
+    
