@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: client_stream_converted_to_pql
+  - name: contact_stream_converted_to_pql
     description: "Activity data triggered when a client converts to a PQL"
     columns:
       - name: id

@@ -26,7 +26,7 @@ models:
     description: "Activity data triggered when a client closes a support ticket"
     columns: *standard_support_columns
 
-  - name: client_stream_responded_to_support_ticket
+  - name: client_stream_reopened_support_ticket
     description: "Activity data triggered when a client responds to a support ticket"
     columns: *standard_support_columns
 
