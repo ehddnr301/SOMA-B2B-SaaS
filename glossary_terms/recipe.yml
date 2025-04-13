@@ -1,0 +1,10 @@
+source:
+  type: datahub-business-glossary
+  config:
+    file: ./soma_glossary.yml
+    enable_auto_id: true
+
+sink:
+  type: datahub-rest
+  config:
+    server: http://localhost:8080

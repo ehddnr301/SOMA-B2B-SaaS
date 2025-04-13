@@ -2,87 +2,87 @@ version: 2
 
 models:
   - name: client_stream_active_on_subscription
-    description: "Activity data triggered when a customer is active on a subscription"
+    description: "고객이 구독에서 활동 중일 때 트리거되는 활동 데이터"
     columns:
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
         tests:
           - unique
           - not_null
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
         tests:
           - not_null
       - name: activity_ts
-        description: "The timestamp when the activity occurred"
+        description: "활동이 발생한 타임스탬프"
         tests:
           - not_null
       - name: activity
-        description: "The name of the activity"
+        description: "활동 이름"
         tests:
           - not_null
       - name: revenue_impact
-        description: "The revenue impact of the activity, if applicable"
+        description: "활동의 수익 영향(해당되는 경우)"
         tests:
           - not_null
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'."
+        description: "활동과 관련된 기능 데이터를 포함하는 JSON 문자열로, 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users'와 같은 고객 세그먼트 및 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'과 같은 플랜 유형을 포함합니다."
         tests:
           - not_null
   - name: client_stream_ended_subscription
-    description: "Activity data triggered when a customer ends a subscription"
+    description: "고객이 구독을 종료할 때 트리거되는 활동 데이터"
     columns:
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
         tests:
           - unique
           - not_null
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
         tests:
           - not_null
       - name: activity_ts
-        description: "The timestamp when the activity occurred"
+        description: "활동이 발생한 타임스탬프"
         tests:
           - not_null
       - name: activity
-        description: "The name of the activity"
+        description: "활동 이름"
         tests:
           - not_null
       - name: revenue_impact
-        description: "The revenue impact of the activity, if applicable"
+        description: "활동의 수익 영향(해당되는 경우)"
         tests:
           - not_null
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including customer segments such as 'churn_risk_users', 'churned_users', 'canceled_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'."
+        description: "활동과 관련된 기능 데이터를 포함하는 JSON 문자열로, 'churn_risk_users', 'churned_users', 'canceled_users'와 같은 고객 세그먼트 및 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'과 같은 플랜 유형을 포함합니다."
         tests:
           - not_null
   - name: client_stream_started_subscription
-    description: "Activity data triggered when a customer starts a subscription"
+    description: "고객이 구독을 시작할 때 트리거되는 활동 데이터"
     columns:
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
         tests:
           - unique
           - not_null
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
         tests:
           - not_null
       - name: activity_ts
-        description: "The timestamp when the activity occurred"
+        description: "활동이 발생한 타임스탬프"
         tests:
           - not_null
       - name: activity
-        description: "The name of the activity"
+        description: "활동 이름"
         tests:
           - not_null
       - name: revenue_impact
-        description: "The revenue impact of the activity, if applicable"
+        description: "활동의 수익 영향(해당되는 경우)"
         tests:
           - not_null
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'free_users', 'paid_users', 'new_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'."
+        description: "활동과 관련된 기능 데이터를 포함하는 JSON 문자열로, 'active_users', 'free_users', 'paid_users', 'new_users', 'trial_users'와 같은 고객 세그먼트 및 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan'과 같은 플랜 유형을 포함합니다."
         tests:
           - not_null
     

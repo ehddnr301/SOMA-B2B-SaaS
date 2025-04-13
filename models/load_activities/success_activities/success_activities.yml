@@ -2,58 +2,58 @@ version: 2
 
 models:
   - name: client_stream_activated_on_product
-    description: "Activity data triggered when a client activates on a product"
+    description: "고객이 제품을 활성화할 때 트리거되는 활동 데이터"
     columns: &standard_success_columns
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the client"
+        description: "고객의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동이 발생한 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity, including customer segments such as 'active_users', 
-          'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 
-          'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 
-          'monthly_plan', 'annual_plan', 'lifetime_plan'. and csm names like 'chris', 'john', 'jane', 'jim', 'jill', 'james' 
-          and mrr_tier types like 'tier1', 'tier2', 'tier3', 'tier4', 'tier5'
+          활동과 관련된 기능 데이터를 포함하는 JSON 문자열로, 'active_users', 'churn_risk_users', 'churned_users', 
+          'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 
+          'trial_users'와 같은 고객 세그먼트와 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 
+          'annual_plan', 'lifetime_plan'과 같은 요금제 유형, 그리고 'chris', 'john', 'jane', 'jim', 'jill', 'james'와 
+          같은 CSM 이름, 'tier1', 'tier2', 'tier3', 'tier4', 'tier5'와 같은 MRR 등급 유형이 포함됩니다.
 
   - name: client_stream_churned_on_product
-    description: "Activity data triggered when a client churns on a product"
+    description: "고객이 제품에서 이탈할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_created_cancellation_request
-    description: "Activity data triggered when a client creates a cancellation request"
+    description: "고객이 취소 요청을 생성할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_created_support_ticket
-    description: "Activity data triggered when a client creates a support ticket"
+    description: "고객이 지원 티켓을 생성할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_onboarded
-    description: "Activity data triggered when a client is onboarded"
+    description: "고객이 온보딩될 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_onboarding_call
-    description: "Activity data triggered when a client is onboarded"
+    description: "고객이 온보딩될 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_responded_to_ces_survey
-    description: "Activity data triggered when a client responds to a CES survey"
+    description: "고객이 CES 설문에 응답할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_responded_to_csat_survey
-    description: "Activity data triggered when a client responds to a CSAT survey"
+    description: "고객이 CSAT 설문에 응답할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_responded_to_nps_survey
-    description: "Activity data triggered when a client responds to a NPS survey"
+    description: "고객이 NPS 설문에 응답할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns
 
   - name: client_stream_withdrew_cancellation_request
-    description: "Activity data triggered when a client withdraws a cancellation request"
+    description: "고객이 취소 요청을 철회할 때 트리거되는 활동 데이터"
     columns: *standard_success_columns

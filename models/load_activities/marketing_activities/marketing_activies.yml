@@ -2,99 +2,99 @@ version: 2
 
 models:
   - name: company_stream_hired_sdr
-    description: "Activity data triggered when a company hires an SDR"
+    description: "회사가 SDR을 고용했을 때 트리거되는 활동 데이터"
     columns: &standard_sdr_columns_t
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the company"
+        description: "회사의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity,
-          including tenure of the SDR such as '0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7'
+          활동과 관련된 특성 데이터를 포함하는 JSON 문자열,
+          '0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7'과 같은 SDR의 재직 기간 포함
   
   - name: contact_stream_attended_event
-    description: "Activity data triggered when a contact attends an event"
+    description: "연락처가 이벤트에 참석했을 때 트리거되는 활동 데이터"
     columns: &standard_sdr_columns_c
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the company"
+        description: "회사의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity,
-          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
+          활동과 관련된 특성 데이터를 포함하는 JSON 문자열,
+          'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'와 같은 캠페인 이름 포함
 
   - name: contact_stream_completed_session
-    description: "Activity data triggered when a contact completes a session"
+    description: "연락처가 세션을 완료했을 때 트리거되는 활동 데이터"
     columns: &standard_sdr_columns_ccp
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the company"
+        description: "회사의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity,
-          including channel such as 'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'
-          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
-          including page such as 'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'
+          활동과 관련된 특성 데이터를 포함하는 JSON 문자열,
+          'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'와 같은 채널 포함
+          'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'와 같은 캠페인 이름 포함
+          'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'와 같은 페이지 포함
 
   - name: contact_stream_converted_suspect_to_prospect
-    description: "Activity data triggered when a contact is qualified as a prospect by an SDR"
+    description: "연락처가 SDR에 의해 가망 고객으로 자격을 얻었을 때 트리거되는 활동 데이터"
     columns: &standard_sdr_columns_cco
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the company"
+        description: "회사의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity,
-          including channel such as 'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'
-          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
-          including org such as 'Sales', 'Marketing', 'Engineering', 'Management'
+          활동과 관련된 특성 데이터를 포함하는 JSON 문자열,
+          'Owned', 'Partner', 'Self-Led', 'Referral', 'Other'와 같은 채널 포함
+          'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'와 같은 캠페인 이름 포함
+          'Sales', 'Marketing', 'Engineering', 'Management'와 같은 조직 포함
 
   - name: contact_stream_started_session
-    description: "Activity data triggered when a contact starts a session"
+    description: "연락처가 세션을 시작했을 때 트리거되는 활동 데이터"
     columns: &standard_sdr_columns_cp
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the company"
+        description: "회사의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
         description: |
-          JSON string containing feature data related to the activity,
-          including campaign name such as 'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'
-          including page such as 'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'
+          활동과 관련된 특성 데이터를 포함하는 JSON 문자열,
+          'feb_event', 'mar_event', 'apr_event', 'may_event', 'jun_event', 'jul_event', 'aug_event'와 같은 캠페인 이름 포함
+          'Landing Page', 'Product Page', 'Blog Post', 'Social Media', 'Article', 'Report'와 같은 페이지 포함
 
   - name: company_stream_offboarded_sdr
     description: "Activity data triggered when a company offboards an SDR"

@@ -2,78 +2,78 @@ version: 2
 
 models:
   - name: client_stream_committed_to_churn
-    description: "Activity data triggered when a customer is committed to churn"
+    description: "고객이 이탈을 확정했을 때 트리거되는 활동 데이터"
     columns: &standard_client_columns_sp
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
         tests:
           - unique
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users' and plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'."
+        description: "활동과 관련된 특성 데이터를 포함하는 JSON 문자열로, 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users'와 같은 고객 세그먼트와 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'과 같은 플랜 유형을 포함합니다."
 
   - name: client_stream_decreased_contract
-    description: "Activity data triggered when a customer decreases their contract"
+    description: "고객이 계약을 축소했을 때 트리거되는 활동 데이터"
     columns: *standard_client_columns_sp
     
   - name: client_stream_expanded_contract
-    description: "Activity data triggered when a customer expands their contract"
+    description: "고객이 계약을 확장했을 때 트리거되는 활동 데이터"
     columns: *standard_client_columns_sp
 
   - name: client_stream_incurred_overage
-    description: "Activity data triggered when a customer incurs overage"
+    description: "고객이 초과 사용을 발생시켰을 때 트리거되는 활동 데이터"
     columns: &standard_client_columns_ssp
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
         tests:
           - unique
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including customer segments such as 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users', plan types like 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan', and services like 'service1', 'service2', 'service3'."
+        description: "활동과 관련된 특성 데이터를 포함하는 JSON 문자열로, 'active_users', 'churn_risk_users', 'churned_users', 'free_users', 'paid_users', 'grace_period_users', 'canceled_users', 'new_users', 'returning_users', 'trial_users'와 같은 고객 세그먼트와 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'과 같은 플랜 유형, 그리고 'service1', 'service2', 'service3'와 같은 서비스를 포함합니다."
 
   - name: client_stream_ordered_service
-    description: "Activity data triggered when a customer orders a service"
+    description: "고객이 서비스를 주문했을 때 트리거되는 활동 데이터"
     columns: *standard_client_columns_ssp
 
   - name: client_stream_renewed_contract
-    description: "Activity data triggered when a customer renews their contract"
+    description: "고객이 계약을 갱신했을 때 트리거되는 활동 데이터"
     columns: *standard_client_columns_sp
 
   - name: client_stream_resurrected_contract
-    description: "Activity data triggered when a customer resurrects their contract"
+    description: "고객이 계약을 부활시켰을 때 트리거되는 활동 데이터"
     columns: *standard_client_columns_sp
 
   - name: contact_stream_signed_contract
-    description: "Activity data triggered when a customer signs a contract"
+    description: "고객이 계약에 서명했을 때 트리거되는 활동 데이터"
     columns: &standard_contact_columns_sspcm
       - name: id
-        description: "The primary key for this table"
+        description: "이 테이블의 기본 키"
       - name: entity_id
-        description: "The entity id of the customer"
+        description: "고객의 엔티티 ID"
       - name: activity_ts
-        description: "The timestamp of the activity"
+        description: "활동의 타임스탬프"
       - name: activity
-        description: "The name of the activity"
+        description: "활동의 이름"
       - name: revenue_impact
-        description: "The revenue impact of the activity"
+        description: "활동의 수익 영향"
       - name: feature_json
-        description: "JSON string containing feature data related to the activity, including subscription types like 'mrr' (Monthly Recurring Revenue) and 'arr' (Annual Recurring Revenue), plan types such as 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', and 'lifetime_plan', as well as customer success managers (CSMs) like 'chris', 'john', 'jane', 'jim', 'jill', and 'james'. Additionally, it contains MRR tiers ranging from 'tier1' to 'tier5'."
+        description: "활동과 관련된 특성 데이터를 포함하는 JSON 문자열로, 'mrr'(월 반복 수익)과 'arr'(연간 반복 수익)과 같은 구독 유형, 'basic_plan', 'standard_plan', 'premium_plan', 'monthly_plan', 'annual_plan', 'lifetime_plan'과 같은 플랜 유형, 그리고 'chris', 'john', 'jane', 'jim', 'jill', 'james'와 같은 고객 성공 관리자(CSMs)를 포함합니다. 또한 'tier1'부터 'tier5'까지의 MRR 티어를 포함합니다."
 
   - name: contact_stream_trial_converted_to_customer
-    description: "Activity data triggered when a customer converts their trial to a customer"
+    description: "고객이 체험판을 정식 고객으로 전환했을 때 트리거되는 활동 데이터"
     columns: *standard_contact_columns_sspcm
     
